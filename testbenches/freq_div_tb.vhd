@@ -23,7 +23,7 @@ architecture tb_architecture of freq_div_tb is
 	
 begin	
 	-- Unit Under Test port map
-	UUT : entity freq_div		--instantiate UUT
+	UUT : entity freq_div		
 	port map (
 		clk => clk,
 		rst_bar => rst_bar,
