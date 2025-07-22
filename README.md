@@ -37,7 +37,6 @@ The core FSM controller that manages the following states:
 
 Outputs include control for phase lines, busy signal, counter enable, clear, and load signal.
 
-Conversion Phases Table:
 ## Conversion Phases
 
 | A | B | Phase              | Purpose                                | Duration                         |
@@ -48,7 +47,6 @@ Conversion Phases Table:
 | 0 | 0 | Integrator Zero    | Bring integrator’s output to 0         | Until pos. edge of `CMPTR`       |
 
 ---
-
 ## Features
 
 - FSM-based conversion control for integrating ADC
@@ -56,7 +54,6 @@ Conversion Phases Table:
 - Modular and reusable components
 - Parametrizable bit-width 
 ---
-
 ## Hardware Implementation
 
 The design was synthesized using **Synplify Pro**, followed by place-and-route with **Lattice Diamond**, and deployed onto a **Lattice FPGA**. An LCD screen was used to observe the counter output in real time, and the TC514 phase signals and comparator behavior were verified using an oscilloscope.
