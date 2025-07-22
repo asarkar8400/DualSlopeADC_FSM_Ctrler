@@ -2,34 +2,13 @@
 
 # TC514 ADC FSM Controller
 
-This project implements a complete digital controller for the TC514 integrating analog-to-digital converter (ADC), including the FSM (finite state machine), counter, output latch, and clock divider. It is designed in VHDL and includes a detailed simulation testbench and a behavioral model of the TC514.
+This project implements a complete digital controller for the dual slope integrating analog-to-digital converter (ADC), the TC514, including the FSM (finite state machine), counter, output latch, and clock divider. It is designed in VHDL and includes a simulation testbench and a behavioral model of the TC514.
 
 ---
 
-## 💡 Overview
+## Overview
 
 The controller operates the TC514 ADC by managing its phase signals (`a` and `b`), monitoring the comparator, and measuring integration time with a counter. Once the conversion is complete, the final digital value is latched into an output register.
-
----
-
-## 📐 Top-Level Module: `tc514cntrl`
-
-This structural module integrates the following components:
-- `freq_div`: Clock divider
-- `binary_cntr`: N-bit up counter
-- `tc514fsm`: FSM controlling the conversion states
-- `out_reg`: Output register for storing the result
-
-### Inputs
-- `soc`: Start-of-conversion signal
-- `clk`: System clock
-- `cmptr`: Comparator output from TC514
-- `rst_bar`: Active-low synchronous reset
-
-### Outputs
-- `a`, `b`: Phase control signals for TC514
-- `dout`: Final digital output
-- `busy_bar`: High when idle, low during conversion
 
 ---
 
@@ -55,34 +34,27 @@ The core FSM controller that manages the following states:
 
 Outputs include control for phase lines, busy signal, counter enable, clear, and load signal.
 
----
+Conversio Phases Table:
+## 🧾 Conversion Phases
 
-## 🧪 Testbench: `tc514cntrl_tb`
-
-A complete simulation testbench is provided which:
-- Generates the system clock
-- Simulates two conversions with a test analog value
-- Asserts correctness of the output (`dout`)
-- Instantiates a behavioral model of the TC514 device
-
-Behavioral model includes:
-- `fsm`: Controls simulated comparator output
-- `bin_cntr`: Internal analog model counter
-- `freq_div_tc514_model`: Simulated divider
-- `tc514model`: Top-level behavioral model entity
+| A | B | Phase              | Purpose                                | Duration                         |
+|---|---|--------------------|----------------------------------------|----------------------------------|
+| 0 | 1 | Auto Zero          | Correct for offset voltages            | 2<sup>16</sup> clocks minimum    |
+| 1 | 0 | Signal Integrate   | Integrate unknown input voltage        | 2<sup>16</sup> clocks exactly    |
+| 1 | 1 | Reference Deintegrate | Integrate -V<sub>ref</sub>          | Until neg. edge of `CMPTR`       |
+| 0 | 0 | Integrator Zero    | Bring integrator’s output to 0         | Until pos. edge of `CMPTR`       |
 
 ---
 
-## 🔧 Features
+## Features
 
 - FSM-based conversion control for integrating ADC
 - Testbench includes analog behavioral model
 - Modular and reusable components
-- Parametrizable bit-width (default 16 bits)
-
+- Parametrizable bit-width 
 ---
 
-## 📝 Notes
+## Hardware Implementatio
 
 The controller assumes:
 - The TC514 outputs a logic-high comparator signal during integration, and a logic-low during deintegration.
