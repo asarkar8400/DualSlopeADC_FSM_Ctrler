@@ -10,7 +10,7 @@ The controller operates the TC514 ADC by managing its phase signals (`a` and `b`
 
 ---
 
-## 🧱 Module Descriptions
+## Block Diagram and Modules
 
 <img width="822" height="351" alt="image" src="https://github.com/user-attachments/assets/3c2912e1-eda9-40a9-b6fe-f79bbb6817f0" />
 
@@ -59,6 +59,4 @@ Conversion Phases Table:
 
 ## Hardware Implementation
 
-The controller assumes:
-- The TC514 outputs a logic-high comparator signal during integration, and a logic-low during deintegration.
-- Timing behavior is simulated for verification using delays and internal counters.
+The design was synthesized using **Synplify Pro**, followed by place-and-route with **Lattice Diamond**, and deployed onto a **Lattice FPGA**. An LCD screen was used to observe the counter output in real time, and the TC514 phase signals and comparator behavior were verified using an oscilloscope.
