@@ -1,8 +1,6 @@
-# TC514 Controller
-
 # TC514 ADC FSM Controller
 
-This project implements a complete digital controller for the dual slope integrating analog-to-digital converter (ADC), the TC514, including the FSM (finite state machine), counter, output latch, and clock divider. It is designed in VHDL and includes a simulation testbench and a behavioral model of the TC514.
+This project implements a complete digital controller for the dual slope integrating analog-to-digital converter (ADC), the TC514, which includes the FSM (finite state machine), counter, output latch, and clock divider. It is designed in VHDL and includes a simulation testbench and a behavioral model of the TC514.
 
 ---
 
@@ -13,6 +11,8 @@ The controller operates the TC514 ADC by managing its phase signals (`a` and `b`
 ---
 
 ## 🧱 Module Descriptions
+
+<img width="822" height="351" alt="image" src="https://github.com/user-attachments/assets/3c2912e1-eda9-40a9-b6fe-f79bbb6817f0" />
 
 ### `freq_div`
 A 4-bit frequency divider used to generate a slower clock (`clk_dvd`) from the system clock.
