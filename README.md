@@ -32,10 +32,13 @@ The core FSM controller that manages the following states:
 - `INTEGRATOR_ZERO`: Wait for integrator to return to zero
 - `CLEAR_CNTR`: Clear counter before next cycle
 
+<img width="574" height="591" alt="image" src="https://github.com/user-attachments/assets/506cd705-f07f-49ff-bf67-7765127e03f6" />
+
+
 Outputs include control for phase lines, busy signal, counter enable, clear, and load signal.
 
-Conversio Phases Table:
-## 🧾 Conversion Phases
+Conversion Phases Table:
+## Conversion Phases
 
 | A | B | Phase              | Purpose                                | Duration                         |
 |---|---|--------------------|----------------------------------------|----------------------------------|
@@ -54,7 +57,7 @@ Conversio Phases Table:
 - Parametrizable bit-width 
 ---
 
-## Hardware Implementatio
+## Hardware Implementation
 
 The controller assumes:
 - The TC514 outputs a logic-high comparator signal during integration, and a logic-low during deintegration.
